@@ -161,7 +161,24 @@ public class AdminDashboard {
             }
         });
 
-        table.getColumns().addAll(numCol, nameCol, userCol, typeCol, balCol, activeCol);
+        TableColumn<Account, Void> actionCol = new TableColumn<>("Profile");
+        actionCol.setCellFactory(col -> new TableCell<>() {
+            private final Button viewBtn = new Button("View Details");
+            {
+                viewBtn.getStyleClass().add("secondary-btn");
+                viewBtn.setStyle("-fx-padding: 4 10; -fx-font-size: 11px;");
+                viewBtn.setOnAction(e -> {
+                    Account acc = getTableRow().getItem();
+                    if (acc != null) showUserProfileDialog(acc);
+                });
+            }
+            @Override protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : viewBtn);
+            }
+        });
+
+        table.getColumns().addAll(numCol, nameCol, userCol, typeCol, balCol, activeCol, actionCol);
         table.setItems(FXCollections.observableArrayList(accounts));
 
         Label countLabel = new Label("Total accounts: " + accounts.size());
@@ -171,8 +188,107 @@ public class AdminDashboard {
         return panel;
     }
 
+    private void showUserProfileDialog(Account acc) {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Customer Profile");
+        dialog.setHeaderText("Customer ID: " + acc.getAccountNumber());
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+
+        VBox contentBox = new VBox(20);
+        contentBox.setPadding(new Insets(10, 20, 10, 10));
+        contentBox.setPrefWidth(550);
+
+        // Header Section
+        HBox header = new HBox(15);
+        header.setAlignment(Pos.CENTER_LEFT);
+        Label userIcon = new Label("👤");
+        userIcon.setStyle("-fx-font-size: 40px;");
+        VBox nameBox = new VBox(2);
+        Label nameLabel = new Label(acc.getAccountHolderName());
+        nameLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1C1C1C;");
+        Label typeLabel = new Label(acc.getAccountType().getDisplayName() + " Account");
+        typeLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: #6B6B6B;");
+        nameBox.getChildren().addAll(nameLabel, typeLabel);
+        
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        
+        Label statusLabel = new Label(acc.isActive() ? "● ACTIVE" : "● CLOSED");
+        statusLabel.setStyle(acc.isActive() ? 
+            "-fx-text-fill: #2E7D32; -fx-font-weight: bold; -fx-background-color: #E8F5E9; -fx-padding: 4 10; -fx-border-radius: 4; -fx-background-radius: 4;" : 
+            "-fx-text-fill: #C62828; -fx-font-weight: bold; -fx-background-color: #FFEBEE; -fx-padding: 4 10; -fx-border-radius: 4; -fx-background-radius: 4;");
+        
+        header.getChildren().addAll(userIcon, nameBox, spacer, statusLabel);
+
+        // Calculate active loans
+        long activeLoans = acc.getLoans().stream()
+                .filter(l -> l.getStatus() == com.bank.model.LoanStatus.APPROVED)
+                .count();
+
+        // Details Grid
+        GridPane grid = new GridPane();
+        grid.getStyleClass().add("info-grid");
+        grid.setHgap(40);
+        grid.setVgap(16);
+        grid.setPadding(new Insets(24));
+
+        // Section 1: Financial
+        addSectionHeader(grid, "Financial Summary", 0);
+        addRow(grid, "Current Balance", String.format("₹%.2f", acc.getBalance()), 1, 0);
+        addRow(grid, "Active Loans", String.valueOf(activeLoans), 1, 1);
+        addRow(grid, "Account Opened On", acc.getCreatedAt().toLocalDate().toString(), 2, 0);
+
+        // Divider
+        Separator sep1 = new Separator();
+        sep1.setPadding(new Insets(10, 0, 10, 0));
+        grid.add(sep1, 0, 3, 2, 1);
+
+        // Section 2: Personal KYC
+        addSectionHeader(grid, "KYC Details", 4);
+        addRow(grid, "Aadhar Number", formatId(acc.getAadharNumber(), 4), 5, 0);
+        addRow(grid, "PAN Number", acc.getPanNumber().toUpperCase(), 5, 1);
+        addRow(grid, "Date of Birth", acc.getDateOfBirth().toString(), 6, 0);
+        addRow(grid, "Username", acc.getUsername(), 6, 1);
+
+        // Divider
+        Separator sep2 = new Separator();
+        sep2.setPadding(new Insets(10, 0, 10, 0));
+        grid.add(sep2, 0, 7, 2, 1);
+
+        // Section 3: Contact
+        addSectionHeader(grid, "Contact Information", 8);
+        addRow(grid, "Mobile Number", "+91 " + acc.getMobileNumber(), 9, 0);
+        
+        VBox addressBox = new VBox(2);
+        Label addrKey = new Label("Registered Address");
+        addrKey.getStyleClass().add("info-key");
+        Label addrVal = new Label(acc.getAddress());
+        addrVal.getStyleClass().add("info-value");
+        addrVal.setWrapText(true);
+        addrVal.setMaxWidth(200);
+        addressBox.getChildren().addAll(addrKey, addrVal);
+        grid.add(addressBox, 1, 9);
+
+        contentBox.getChildren().addAll(header, grid);
+        dialog.getDialogPane().setContent(contentBox);
+        dialog.showAndWait();
+    }
+
+    private void addSectionHeader(GridPane grid, String title, int row) {
+        Label lbl = new Label(title);
+        lbl.setStyle("-fx-font-weight: bold; -fx-text-fill: #999999; -fx-font-size: 11px; -fx-letter-spacing: 1px;");
+        grid.add(lbl, 0, row, 2, 1);
+    }
+    
+    private String formatId(String id, int groupSize) {
+        if (id == null) return "";
+        return id.replaceAll("(.{" + groupSize + "})", "$1 ").trim();
+    }
+
+
     // ─────────────────────────────────────────────
     // Search Account Panel
+
     // ─────────────────────────────────────────────
     private VBox buildSearchPanel() {
         VBox panel = new VBox(16);
