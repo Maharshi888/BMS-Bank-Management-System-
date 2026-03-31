@@ -1,0 +1,26 @@
+# Compiled output
+bin/
+out/
+*.class
+
+# Serialized data (accounts, statements) — don't commit personal test data
+data/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.suo
+*.user
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build tools
+target/
+*.jar
+
+# Logs
+*.log
+output.txt

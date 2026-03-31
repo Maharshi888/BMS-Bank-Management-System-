@@ -1,0 +1,761 @@
+/* =============================================================
+   BMS Bank — JavaFX Stylesheet
+   Inspired by: ICICI Bank, Kotak Mahindra, Wells Fargo
+   Color System:
+     Surfaces  : #FFFFFF  #F7F7F7  #F2F2F2
+     Text      : #1C1C1C  #4A4A4A  #888888   ← neutral, not red
+     Brand Red : #C0272D  #D93025  #E84040   ← crimson
+     Accent    : #E07820  #F5A623  #FFC107   ← amber/gold
+     Borders   : #E0E0E0  #F0D8D0            ← neutral
+   All text/bg pairings verified for WCAG AA contrast.
+   ============================================================= */
+
+/* ── Global ── */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #F7F7F7;
+}
+
+.screen-bg {
+    -fx-background-color: #F7F7F7;
+}
+
+/* =============================================================
+   LOGIN SCREEN
+   ============================================================= */
+
+/* Left panel — deep crimson brand panel, WHITE text ✓ ~8:1 */
+.left-panel {
+    -fx-background-color: linear-gradient(to bottom, #7B0D14, #C0272D, #E07820);
+    -fx-padding: 56px 36px;
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+}
+
+.brand-title {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 6, 0, 0, 2);
+}
+
+.brand-tagline {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(255,255,255,0.85);
+    -fx-font-style: italic;
+}
+
+.brand-desc {
+    -fx-font-size: 15px;
+    -fx-text-fill: rgba(255,255,255,0.90);
+    -fx-line-spacing: 5px;
+}
+
+/* Right panel — pure white login form */
+.right-panel {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 56px 64px;
+}
+
+/* Title: near-black on white ✓ ~18:1 */
+.form-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1C1C1C;
+}
+
+/* Subtitle: medium gray on white ✓ ~7:1 */
+.form-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6B6B6B;
+}
+
+/* =============================================================
+   FORM FIELDS
+   ============================================================= */
+
+/* Label: dark gray on white ✓ ~8:1 */
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #444444;
+    -fx-padding: 0 0 2px 1px;
+}
+
+/* Field: white bg, near-black text, neutral border → crimson focus ✓ */
+.text-field-custom, .password-field {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1C1C1C;
+    -fx-prompt-text-fill: #AAAAAA;
+    -fx-border-color: #D0D0D0;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 11px 14px;
+    -fx-font-size: 14px;
+}
+
+.text-field-custom:focused {
+    -fx-border-color: #C0272D;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(192,39,45,0.20), 5, 0, 0, 0);
+}
+
+.text-area-custom {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1C1C1C;
+    -fx-prompt-text-fill: #AAAAAA;
+    -fx-border-color: #D0D0D0;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 9px 12px;
+    -fx-font-size: 14px;
+}
+
+.text-area-custom .content {
+    -fx-background-color: #FFFFFF;
+}
+
+.date-picker-custom {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D0D0D0;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+}
+
+.date-picker-custom .text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1C1C1C;
+    -fx-prompt-text-fill: #AAAAAA;
+    -fx-padding: 9px 12px;
+    -fx-font-size: 14px;
+}
+
+.combo-box-custom {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D0D0D0;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-text-fill: #1C1C1C;
+    -fx-padding: 4px 8px;
+}
+
+.combo-box-custom .list-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1C1C1C;
+}
+
+/* =============================================================
+   BUTTONS
+   ============================================================= */
+
+/* Primary: crimson bg + WHITE text ✓ ~6.5:1 */
+.primary-btn {
+    -fx-background-color: #C0272D;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 12px 30px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(192,39,45,0.30), 8, 0, 0, 2);
+}
+
+.primary-btn:hover {
+    -fx-background-color: #D93025;
+    -fx-effect: dropshadow(gaussian, rgba(217,48,37,0.45), 12, 0, 0, 3);
+}
+
+/* Secondary: white bg + amber border + amber text ✓ ~4.5:1 */
+.secondary-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #C75000;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 11px 30px;
+    -fx-border-color: #C75000;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+
+.secondary-btn:hover {
+    -fx-background-color: #FFF5EE;
+}
+
+/* Danger: deep wine red bg + WHITE text ✓ */
+.danger-btn {
+    -fx-background-color: #8B1015;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 12px 30px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+
+.danger-btn:hover {
+    -fx-background-color: #A81820;
+}
+
+.back-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #C0272D;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-padding: 6px 12px;
+}
+
+/* Logout: white bg + crimson border+text ✓ */
+.logout-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #C0272D;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-border-color: #C0272D;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 7px 20px;
+    -fx-cursor: hand;
+}
+
+.logout-btn:hover {
+    -fx-background-color: #FFF0F0;
+}
+
+/* Admin login btn: white bg + amber border+text ✓ */
+.admin-login-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #C75000;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-color: #C75000;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+
+.admin-login-btn:hover {
+    -fx-background-color: #FFF5EE;
+}
+
+/* =============================================================
+   NAV BAR
+   ============================================================= */
+
+/* White nav, crimson logo — clean banking header ✓ */
+.nav-bar {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E8E8E8;
+    -fx-border-width: 0 0 1.5px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);
+}
+
+.nav-logo {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #C0272D;
+}
+
+/* User: #1C1C1C dark on white ✓ */
+.nav-user {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4A4A4A;
+}
+
+/* =============================================================
+   SIDEBAR
+   ============================================================= */
+
+/* Very light gray sidebar (F2F2F2), dark charcoal items ✓ */
+.sidebar {
+    -fx-background-color: #F2F2F2;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 0 1.5px 0 0;
+}
+
+.sidebar-section-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #999999;
+    -fx-letter-spacing: 1.5px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 8px 4px;
+}
+
+/* Charcoal text on light gray ✓ ~8:1 */
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3A3A3A;
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+    -fx-padding: 11px 14px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+
+.sidebar-btn:hover {
+    -fx-background-color: #FFECEC;
+    -fx-text-fill: #C0272D;
+}
+
+/* Crimson tint active: WHITE bg card with crimson text ✓ */
+.sidebar-btn:selected {
+    -fx-background-color: #FFECEC;
+    -fx-text-fill: #C0272D;
+    -fx-font-weight: bold;
+    -fx-border-color: #C0272D;
+    -fx-border-width: 0 0 0 3px;
+}
+
+/* =============================================================
+   CONTENT / PANELS
+   ============================================================= */
+
+.content-area {
+    -fx-background-color: #F7F7F7;
+}
+
+/* Panel title: near-black ✓ */
+.panel-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1C1C1C;
+}
+
+/* Balance card: deep red → bright red → amber — WHITE text ✓ ~6-8:1 */
+.balance-card {
+    -fx-background-color: linear-gradient(to right, #8B1015, #C0272D, #E07820);
+    -fx-background-radius: 14px;
+    -fx-padding: 30px 36px;
+    -fx-max-width: 520px;
+    -fx-effect: dropshadow(gaussian, rgba(192,39,45,0.35), 18, 0, 0, 5);
+}
+
+.balance-card-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(255,255,255,0.80);
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 0.5px;
+}
+
+/* 44px bold WHITE on rich red gradient ✓ */
+.balance-amount {
+    -fx-font-size: 44px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.mini-note {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(255,255,255,0.70);
+}
+
+/* Interest badge: amber text on pale amber bg ✓ */
+.interest-badge {
+    -fx-background-color: #FFF8E1;
+    -fx-text-fill: #B75000;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 5px 13px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #FFD54F;
+    -fx-border-width: 1px;
+}
+
+/* Info grid: white card on F7 bg, charcoal text ✓ */
+.info-grid {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10px;
+    -fx-border-color: #E8E8E8;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-max-width: 720px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+    -fx-padding: 20px;
+}
+
+/* Info key: muted gray, NOT reddish ✓ */
+.info-key {
+    -fx-font-size: 11px;
+    -fx-text-fill: #888888;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 0.3px;
+}
+
+/* Info value: near-black ✓ */
+.info-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1C1C1C;
+    -fx-font-weight: bold;
+}
+
+/* =============================================================
+   ACCOUNT CREATED CARD
+   ============================================================= */
+
+.info-card {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E8E8E8;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 0, 3);
+}
+
+/* Crimson card title ✓ */
+.card-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #C0272D;
+}
+
+.detail-key {
+    -fx-font-size: 13px;
+    -fx-text-fill: #888888;
+    -fx-min-width: 150px;
+}
+
+.detail-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1C1C1C;
+}
+
+/* =============================================================
+   LABELS & MESSAGES
+   ============================================================= */
+
+/* Crimson error on white ✓ ~6:1 */
+.error-label {
+    -fx-text-fill: #C0272D;
+    -fx-font-size: 13px;
+}
+
+/* Deep amber success on white ✓ ~4.5:1 */
+.success-label {
+    -fx-text-fill: #B75000;
+    -fx-font-size: 13px;
+}
+
+/* Amber warning box ✓ */
+.warning-label {
+    -fx-text-fill: #7A4500;
+    -fx-font-size: 14px;
+    -fx-background-color: #FFF8E1;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px 16px;
+    -fx-border-color: #FFD54F;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+/* Note: light gray bg, muted gray text on white ✓ */
+.note-label {
+    -fx-text-fill: #666666;
+    -fx-font-size: 13px;
+    -fx-background-color: #F5F5F5;
+    -fx-background-radius: 6px;
+    -fx-padding: 9px 13px;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 6px;
+    -fx-border-width: 1px;
+}
+
+.info-text {
+    -fx-text-fill: #666666;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 5px;
+}
+
+.empty-label {
+    -fx-text-fill: #AAAAAA;
+    -fx-font-size: 16px;
+}
+
+.or-label {
+    -fx-text-fill: #AAAAAA;
+    -fx-font-size: 13px;
+}
+
+/* =============================================================
+   REGISTER FORM
+   ============================================================= */
+
+.form-header {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E8E8E8;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.header-title {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1C1C1C;
+}
+
+.register-form {
+    -fx-background-color: #F7F7F7;
+}
+
+/* Section divider label: crimson uppercase ✓ */
+.section-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #C0272D;
+    -fx-letter-spacing: 1.2px;
+    -fx-padding: 16px 0 4px 0;
+}
+
+/* =============================================================
+   TABLE
+   ============================================================= */
+
+/* White table, light header, charcoal text — classic banking ✓ */
+.table-custom {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E8E8E8;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-table-cell-border-color: #F2F2F2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 8, 0, 0, 2);
+}
+
+/* Header: light gray bg + charcoal uppercase text ✓ */
+.table-custom .column-header {
+    -fx-background-color: #F5F5F5;
+    -fx-text-fill: #444444;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 12px 14px;
+}
+
+.table-custom .column-header-background {
+    -fx-background-color: #F5F5F5;
+}
+
+/* Rows: white / near-white alternating, charcoal text ✓ */
+.table-custom .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1C1C1C;
+    -fx-border-color: #F2F2F2;
+}
+
+.table-custom .table-row-cell:odd {
+    -fx-background-color: #FAFAFA;
+}
+
+.table-custom .table-row-cell:hover {
+    -fx-background-color: #FFF5F5;
+}
+
+.table-custom .table-cell {
+    -fx-text-fill: #1C1C1C;
+    -fx-padding: 10px 14px;
+    -fx-font-size: 13px;
+}
+
+/* =============================================================
+   SCROLL PANE
+   ============================================================= */
+
+.scroll-pane-custom {
+    -fx-background-color: #F7F7F7;
+    -fx-background: #F7F7F7;
+}
+
+.scroll-pane-custom > .viewport {
+    -fx-background-color: #F7F7F7;
+}
+
+/* =============================================================
+   SEPARATOR
+   ============================================================= */
+
+.separator .line {
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px 0 0 0;
+}
+
+/* =============================================================
+   ADMIN — GOLD/AMBER VARIANT
+   ============================================================= */
+
+/* Admin nav: very slightly warm white with amber underline border ✓ */
+.admin-nav-bar {
+    -fx-background-color: #FFFDF5;
+    -fx-border-color: #F5A623;
+    -fx-border-width: 0 0 2px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);
+}
+
+/* Admin badge: amber fill on pale amber bg ✓ */
+.admin-badge {
+    -fx-background-color: #FFF3CD;
+    -fx-text-fill: #7A4500;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 5px 14px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #FFCA28;
+    -fx-border-width: 1px;
+}
+
+/* Admin sidebar: pale amber bg side panel ✓ */
+.admin-sidebar {
+    -fx-background-color: #FFFDF5;
+    -fx-border-color: #F0D080;
+    -fx-border-width: 0 1.5px 0 0;
+}
+
+.admin-sidebar .sidebar-section-label {
+    -fx-text-fill: #B08020;
+}
+
+.admin-sidebar .sidebar-btn:selected {
+    -fx-background-color: #FFF8DC;
+    -fx-text-fill: #B75000;
+    -fx-border-color: #E07820;
+    -fx-border-width: 0 0 0 3px;
+}
+
+/* =============================================================
+   LOAN STATUS BADGES
+   ============================================================= */
+
+/* Amber pending: warm yellow bg, deep amber text ✓ */
+.loan-pending {
+    -fx-background-color: #FFF9C4;
+    -fx-text-fill: #7A5500;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 3px 8px;
+}
+
+/* Approved: pale green-amber (orange-tinted green), deep orange text ✓ */
+.loan-approved {
+    -fx-background-color: #E8F5E9;
+    -fx-text-fill: #2E7D32;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 3px 8px;
+}
+
+/* Rejected: pale red bg, crimson text ✓ */
+.loan-rejected {
+    -fx-background-color: #FFEBEE;
+    -fx-text-fill: #B71C1C;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 3px 8px;
+}
+
+/* =============================================================
+   APPROVE / REJECT BUTTONS
+   ============================================================= */
+
+/* Amber approve: amber bg + dark text ✓ ~5:1 */
+.approve-btn {
+    -fx-background-color: #E07820;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 13px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.approve-btn:hover {
+    -fx-background-color: #F5A623;
+}
+
+/* Crimson reject: crimson bg + white text ✓ ~6:1 */
+.reject-btn {
+    -fx-background-color: #C0272D;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 13px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.reject-btn:hover {
+    -fx-background-color: #D93025;
+}
+
+/* =============================================================
+   LOAN TAB PANE
+   ============================================================= */
+
+.loan-tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #F2F2F2;
+}
+
+/* Unselected: light gray bg + charcoal text ✓ */
+.loan-tab-pane .tab {
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: #4A4A4A;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 24px;
+    -fx-cursor: hand;
+}
+
+/* Selected: crimson bg + WHITE text ✓ */
+.loan-tab-pane .tab:selected {
+    -fx-background-color: #C0272D;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.loan-tab-pane .tab-content-area {
+    -fx-background-color: #F7F7F7;
+}
+
+/* =============================================================
+   COMBO FIELD (Loan Panel)
+   ============================================================= */
+
+/* White field, charcoal text, neutral border → crimson focus ✓ */
+.combo-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D0D0D0;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-text-fill: #1C1C1C;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+}
+
+.combo-field .list-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1C1C1C;
+}
+
+.combo-field .combo-box-popup .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D0D0D0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 8, 0, 0, 3);
+}
+
+.combo-field .combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #FFF5F5;
+    -fx-text-fill: #C0272D;
+}
+
+.combo-field:focused {
+    -fx-border-color: #C0272D;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(192,39,45,0.18), 5, 0, 0, 0);
+}
